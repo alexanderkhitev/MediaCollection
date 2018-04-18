@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5AC88EB42087916800E00DE7 /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC88EB32087916800E00DE7 /* PhotoCollectionCell.swift */; };
 		5AEFD28520874D550006617D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD28420874D550006617D /* AppDelegate.swift */; };
 		5AEFD28A20874D550006617D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFD28820874D550006617D /* Main.storyboard */; };
 		5AEFD28C20874D590006617D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFD28B20874D590006617D /* Assets.xcassets */; };
@@ -16,7 +17,7 @@
 		5AEFD2A1208753A90006617D /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A0208753A90006617D /* ReusableView.swift */; };
 		5AEFD2A3208753CC0006617D /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A2208753CC0006617D /* UICollectionViewExtension.swift */; };
 		5AEFD2A62087577B0006617D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A52087577B0006617D /* Media.swift */; };
-		5AEFD2AA208757CE0006617D /* MediaCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A8208757CE0006617D /* MediaCollectionCell.swift */; };
+		5AEFD2AA208757CE0006617D /* VideoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A8208757CE0006617D /* VideoCollectionCell.swift */; };
 		5AEFD2AD208759E80006617D /* MediaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2AC208759E80006617D /* MediaDataManager.swift */; };
 		5AEFD2AF20875C400006617D /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2AE20875C400006617D /* RandomGenerator.swift */; };
 		5AEFD2B120876F860006617D /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2B020876F860006617D /* ResourceManager.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5AC88EB32087916800E00DE7 /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		5AEFD28120874D550006617D /* MediaCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AEFD28420874D550006617D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AEFD28920874D550006617D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -35,7 +37,7 @@
 		5AEFD2A0208753A90006617D /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		5AEFD2A2208753CC0006617D /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		5AEFD2A52087577B0006617D /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		5AEFD2A8208757CE0006617D /* MediaCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionCell.swift; sourceTree = "<group>"; };
+		5AEFD2A8208757CE0006617D /* VideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionCell.swift; sourceTree = "<group>"; };
 		5AEFD2AC208759E80006617D /* MediaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDataManager.swift; sourceTree = "<group>"; };
 		5AEFD2AE20875C400006617D /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
 		5AEFD2B020876F860006617D /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
@@ -155,7 +157,8 @@
 		5AEFD2A7208757880006617D /* CollectionCells */ = {
 			isa = PBXGroup;
 			children = (
-				5AEFD2A8208757CE0006617D /* MediaCollectionCell.swift */,
+				5AEFD2A8208757CE0006617D /* VideoCollectionCell.swift */,
+				5AC88EB32087916800E00DE7 /* PhotoCollectionCell.swift */,
 			);
 			path = CollectionCells;
 			sourceTree = "<group>";
@@ -279,11 +282,12 @@
 				5AEFD29B2087505B0006617D /* MainNaviController.swift in Sources */,
 				5AEFD29D208750A60006617D /* MediaListViewController.swift in Sources */,
 				5AEFD2A62087577B0006617D /* Media.swift in Sources */,
-				5AEFD2AA208757CE0006617D /* MediaCollectionCell.swift in Sources */,
+				5AEFD2AA208757CE0006617D /* VideoCollectionCell.swift in Sources */,
 				5AEFD28520874D550006617D /* AppDelegate.swift in Sources */,
 				5AEFD2AF20875C400006617D /* RandomGenerator.swift in Sources */,
 				5AEFD2A1208753A90006617D /* ReusableView.swift in Sources */,
 				5AEFD2AD208759E80006617D /* MediaDataManager.swift in Sources */,
+				5AC88EB42087916800E00DE7 /* PhotoCollectionCell.swift in Sources */,
 				5AEFD2A3208753CC0006617D /* UICollectionViewExtension.swift in Sources */,
 				5AEFD2B120876F860006617D /* ResourceManager.swift in Sources */,
 			);
@@ -434,7 +438,10 @@
 				DEVELOPMENT_TEAM = FQCFR2VMWQ;
 				INFOPLIST_FILE = MediaCollection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.khitev.MediaCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -451,7 +458,10 @@
 				DEVELOPMENT_TEAM = FQCFR2VMWQ;
 				INFOPLIST_FILE = MediaCollection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.khitev.MediaCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

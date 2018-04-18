@@ -111,9 +111,8 @@ extension MediaListViewController {
     }
     
     private func registerCells() {
-        let nib = UINib(nibName: MediaCollectionCell.defaultReuseIdentifier, bundle: Bundle.main)
-//        collectionView.register(nib, forCellWithReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier)
-        collectionView.register(MediaCollectionCell.self, forCellWithReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier)
+        collectionView.register(VideoCollectionCell.self, forCellWithReuseIdentifier: VideoCollectionCell.defaultReuseIdentifier)
+        collectionView.register(PhotoCollectionCell.self, forCellWithReuseIdentifier: PhotoCollectionCell.defaultReuseIdentifier)
     }
     
 }
@@ -131,7 +130,12 @@ extension MediaListViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return mediaCell(collectionView, indexPath: indexPath)
+        let media = models[indexPath.row]
+        if media.type == .video {
+            return videoCell(collectionView, indexPath: indexPath, media: media)
+        } else {
+            return photoCell(collectionView, indexPath: indexPath, media: media)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -146,11 +150,20 @@ extension MediaListViewController: UICollectionViewDataSource, UICollectionViewD
 
 extension MediaListViewController {
     
-    private func mediaCell(_ collectionView: UICollectionView, indexPath: IndexPath) -> MediaCollectionCell {
+    private func videoCell(_ collectionView: UICollectionView, indexPath: IndexPath, media: Media) -> VideoCollectionCell {
         // swiftlint:disable force_cast
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier, for: indexPath) as! MediaCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoCollectionCell.defaultReuseIdentifier, for: indexPath) as! VideoCollectionCell
         // swiftlint:enable force_cast
-        let media = models[indexPath.row]
+        
+        cell.populate(media)
+        
+        return cell
+    }
+    
+    private func photoCell(_ collectionView: UICollectionView, indexPath: IndexPath, media: Media) -> PhotoCollectionCell {
+        // swiftlint:disable force_cast
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionCell.defaultReuseIdentifier, for: indexPath) as! PhotoCollectionCell
+        // swiftlint:enable force_cast
         
         cell.populate(media)
         
@@ -179,8 +192,14 @@ extension MediaListViewController {
         guard let selectedIndexPath = selectedIndexPath else { return }
         let media = models[selectedIndexPath.row]
         media.url = url
-        guard let cell = collectionView.cellForItem(at: selectedIndexPath) as? MediaCollectionCell else { return }
-        cell.populate(media)
+        
+        if media.type == .video {
+            guard let cell = collectionView.cellForItem(at: selectedIndexPath) as? VideoCollectionCell else { return }
+            cell.populate(media)
+        } else {
+            guard let cell = collectionView.cellForItem(at: selectedIndexPath) as? PhotoCollectionCell else { return }
+            cell.populate(media)
+        }
     }
     
 }
