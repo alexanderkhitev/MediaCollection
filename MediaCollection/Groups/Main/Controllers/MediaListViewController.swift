@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class MediaListViewController: UIViewController {
     
@@ -29,6 +30,19 @@ class MediaListViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var mediaPicker: UIImagePickerController = {
+        let mediaPicker = UIImagePickerController()
+        return mediaPicker
+    }()
+    
+    // MARK: - Data
+    
+    private var models = [Media]()
+    
+    // MARK: - Properties
+    
+    private var selectedIndexPath: IndexPath?
+    
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -39,6 +53,8 @@ class MediaListViewController: UIViewController {
         addUIElements()
         // collection view
         setupCollectionViewSettings()
+        // data
+        getModels()
     }
     
     override func viewWillLayoutSubviews() {
@@ -71,6 +87,18 @@ class MediaListViewController: UIViewController {
     
 }
 
+// MARK: - Data
+
+extension MediaListViewController {
+    
+    private func getModels() {
+        let mediaDataManager = MediaDataManager()
+        models = mediaDataManager.getModels()
+        collectionView.reloadData()
+    }
+    
+}
+
 // MARK: - Collection View
 
 extension MediaListViewController {
@@ -82,7 +110,8 @@ extension MediaListViewController {
     }
     
     private func registerCells() {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: UICollectionViewCell.defaultReuseIdentifier)
+        let nib = UINib(nibName: MediaCollectionCell.defaultReuseIdentifier, bundle: Bundle.main)
+        collectionView.register(nib, forCellWithReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier)
     }
     
 }
@@ -96,15 +125,79 @@ extension MediaListViewController: UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return models.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.defaultReuseIdentifier, for: indexPath)
+        return mediaCell(collectionView, indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        let media = models[indexPath.row]
+        presentMediaPicker(media)
+    }
+    
+}
+
+// MARK: - Cells
+
+extension MediaListViewController {
+    
+    private func mediaCell(_ collectionView: UICollectionView, indexPath: IndexPath) -> MediaCollectionCell {
+        // swiftlint:disable force_cast
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier, for: indexPath) as! MediaCollectionCell
+        // swiftlint:enable force_cast
+        let media = models[indexPath.row]
         
-        cell.backgroundColor = .black
+        cell.populate(media)
         
         return cell
+    }
+    
+}
+
+// MARK: - Media functions
+
+extension MediaListViewController {
+    
+    private func presentMediaPicker(_ media: Media) {
+        mediaPicker.sourceType = .photoLibrary
+        mediaPicker.delegate = self
+        switch media.type {
+        case .photo:
+            mediaPicker.mediaTypes = [kUTTypeImage] as [String]
+        case .video:
+            mediaPicker.mediaTypes = [kUTTypeMovie] as [String]
+        }
+        present(mediaPicker, animated: true, completion: nil)
+    }
+    
+    private func updateCell(_ url: URL) {
+        guard let selectedIndexPath = selectedIndexPath else { return }
+        let media = models[selectedIndexPath.row]
+        media.url = url
+        let cell = collectionView.cellForItem(at: selectedIndexPath) as? MediaCollectionCell else { return }
+        cell?.populate(media)
+    }
+    
+}
+
+// MARK: - Media picker delegate
+
+extension MediaListViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let url = info["UIImagePickerControllerReferenceURL"] as? URL {
+            print(videoURL)
+            updateCell(url)
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
 }
