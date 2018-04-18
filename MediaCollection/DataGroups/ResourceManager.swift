@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AppFolder
 
 final class ResourceManager {
     
