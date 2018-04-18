@@ -17,7 +17,6 @@
 		5AEFD2A3208753CC0006617D /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A2208753CC0006617D /* UICollectionViewExtension.swift */; };
 		5AEFD2A62087577B0006617D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A52087577B0006617D /* Media.swift */; };
 		5AEFD2AA208757CE0006617D /* MediaCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A8208757CE0006617D /* MediaCollectionCell.swift */; };
-		5AEFD2AB208757CE0006617D /* MediaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A9208757CE0006617D /* MediaCollectionCell.xib */; };
 		5AEFD2AD208759E80006617D /* MediaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2AC208759E80006617D /* MediaDataManager.swift */; };
 		5AEFD2AF20875C400006617D /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2AE20875C400006617D /* RandomGenerator.swift */; };
 		5AEFD2B120876F860006617D /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2B020876F860006617D /* ResourceManager.swift */; };
@@ -37,7 +36,6 @@
 		5AEFD2A2208753CC0006617D /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		5AEFD2A52087577B0006617D /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		5AEFD2A8208757CE0006617D /* MediaCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollectionCell.swift; sourceTree = "<group>"; };
-		5AEFD2A9208757CE0006617D /* MediaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionCell.xib; sourceTree = "<group>"; };
 		5AEFD2AC208759E80006617D /* MediaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDataManager.swift; sourceTree = "<group>"; };
 		5AEFD2AE20875C400006617D /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
 		5AEFD2B020876F860006617D /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				5AEFD2A8208757CE0006617D /* MediaCollectionCell.swift */,
-				5AEFD2A9208757CE0006617D /* MediaCollectionCell.xib */,
 			);
 			path = CollectionCells;
 			sourceTree = "<group>";
@@ -183,7 +180,6 @@
 				5AEFD27E20874D550006617D /* Frameworks */,
 				5AEFD27F20874D550006617D /* Resources */,
 				5AEFD29620874F430006617D /* Swift Lint Script */,
-				83AF495CD91B570BC64E53F6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,7 +228,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AEFD2AB208757CE0006617D /* MediaCollectionCell.xib in Resources */,
 				5AEFD28F20874D590006617D /* LaunchScreen.storyboard in Resources */,
 				5AEFD28C20874D590006617D /* Assets.xcassets in Resources */,
 				5AEFD28A20874D550006617D /* Main.storyboard in Resources */,
@@ -273,24 +268,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
-		};
-		83AF495CD91B570BC64E53F6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MediaCollection/Pods-MediaCollection-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AppFolder/AppFolder.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppFolder.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediaCollection/Pods-MediaCollection-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -457,10 +434,7 @@
 				DEVELOPMENT_TEAM = FQCFR2VMWQ;
 				INFOPLIST_FILE = MediaCollection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.khitev.MediaCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -477,10 +451,7 @@
 				DEVELOPMENT_TEAM = FQCFR2VMWQ;
 				INFOPLIST_FILE = MediaCollection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.khitev.MediaCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

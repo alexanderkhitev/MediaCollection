@@ -12,7 +12,7 @@ import AVFoundation
 class MediaCollectionCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
-    @IBOutlet private weak var mediaImageView: UIImageView!
+    private let mediaImageView = UIImageView()
     
     // MARK: - Managers
     
@@ -23,6 +23,8 @@ class MediaCollectionCell: UICollectionViewCell {
     
     private lazy var videoPlayer: AVPlayer = {
         let player = AVPlayer()
+        player.isMuted = true
+        player.volume = 0
         return player
     }()
     
@@ -32,68 +34,79 @@ class MediaCollectionCell: UICollectionViewCell {
     }()
 
     
-    // MARK: - Data
-    private var media: Media?
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
     open func populate(_ media: Media) {
-        self.media = media
+        clear()
         switch media.type {
         case .photo:
-            backgroundColor = .green
+            backgroundColor = .green 
             setupPhotoSettings()
             if let url = media.url {
+                addImageView()
                 setupPhoto(url)
             }
         case .video:
             backgroundColor = .red
-            setupVideoSettings()
             if let url = media.url {
+                setupVideoSettings(url)
                 setupVideo(url)
             }
         }
-        guard media.url == nil else { return }
-        clear()
     }
     
-    private func setupPhotoSettings() {
-        avPlayerLayer.removeFromSuperlayer()
-        mediaImageView.isHidden = false
+    // MARK: - image
+    
+    private func addImageView() {
+        mediaImageView.frame = bounds
+        addSubview(mediaImageView)
     }
     
-    private func setupVideoSettings() {
-        mediaImageView.isHidden = true
-        avPlayerLayer.videoGravity = .resizeAspectFill
-        
-        avPlayerLayer.player = videoPlayer
-        avPlayerLayer.frame = bounds
-        
-        debugPrint("avPlayerLayer", avPlayerLayer.frame)
-        
-        let subLayersCount = layer.sublayers?.count ?? 0
-        debugPrint("subLayersCount", subLayersCount)
-        let index = subLayersCount + 1
-        self.layer.insertSublayer(avPlayerLayer, at: UInt32(index))
-    }
-
     private func setupPhoto(_ url: URL) {
         let image = resourceManager.getImageURL(url)
         mediaImageView.image = image
     }
+
+    private func setupPhotoSettings() {
+        avPlayerLayer.removeFromSuperlayer()
+        mediaImageView.isHidden = false
+        mediaImageView.contentMode = .scaleAspectFill
+        mediaImageView.clipsToBounds = true
+        videoPlayer.pause()
+    }
+    
+    // MARK: - video
+    
+    private func setupVideoSettings(_ url: URL) {
+        mediaImageView.removeFromSuperview()
+        
+        videoPlayer = AVPlayer(url: url)
+        videoPlayer.isMuted = true
+        videoPlayer.volume = 0
+        
+        mediaImageView.isHidden = true
+        avPlayerLayer = AVPlayerLayer(player: videoPlayer)
+        avPlayerLayer.videoGravity = .resizeAspectFill
+        avPlayerLayer.frame = bounds
+        
+        self.layer.addSublayer(avPlayerLayer)
+    }
     
     private func setupVideo(_ url: URL) {
-        DispatchQueue.global(qos: .default).async { [weak self] in
-            self?.videoPlayer = AVPlayer(url: url)
+        DispatchQueue.main.async { [weak self] in
             self?.videoPlayer.play()
         }
     }
     
     private func clear() {
         mediaImageView.image = nil
+        mediaImageView.removeFromSuperview()
+        
+        videoPlayer.pause()
+        avPlayerLayer.removeFromSuperlayer()
     }
     
 }

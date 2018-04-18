@@ -111,7 +111,8 @@ extension MediaListViewController {
     
     private func registerCells() {
         let nib = UINib(nibName: MediaCollectionCell.defaultReuseIdentifier, bundle: Bundle.main)
-        collectionView.register(nib, forCellWithReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier)
+//        collectionView.register(nib, forCellWithReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier)
+        collectionView.register(MediaCollectionCell.self, forCellWithReuseIdentifier: MediaCollectionCell.defaultReuseIdentifier)
     }
     
 }
