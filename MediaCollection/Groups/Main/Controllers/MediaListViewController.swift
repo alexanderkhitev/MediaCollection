@@ -72,6 +72,7 @@ class MediaListViewController: UIViewController {
     
     private func setupUISettings() {
         view.backgroundColor = .white
+        navigationItem.title = "Green == photo, Red == video"
     }
     
     private func addUIElements() {
