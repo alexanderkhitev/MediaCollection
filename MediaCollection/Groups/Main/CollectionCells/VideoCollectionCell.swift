@@ -51,7 +51,8 @@ class VideoCollectionCell: UICollectionViewCell {
         
         self.layer.addSublayer(avPlayerLayer)
         
-        DispatchQueue.main.async { [weak self] in
+        
+        DispatchQueue.global(qos: .default).async { [weak self] in
             self?.videoPlayer.play()
         }
     }
