@@ -177,8 +177,8 @@ extension MediaListViewController {
         guard let selectedIndexPath = selectedIndexPath else { return }
         let media = models[selectedIndexPath.row]
         media.url = url
-        let cell = collectionView.cellForItem(at: selectedIndexPath) as? MediaCollectionCell else { return }
-        cell?.populate(media)
+        guard let cell = collectionView.cellForItem(at: selectedIndexPath) as? MediaCollectionCell else { return }
+        cell.populate(media)
     }
     
 }
@@ -188,9 +188,12 @@ extension MediaListViewController {
 extension MediaListViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let url = info["UIImagePickerControllerReferenceURL"] as? URL {
-            print(videoURL)
+        if let url = info["UIImagePickerControllerImageURL"] as? URL {
+            print(url)
             updateCell(url)
+        } else if let mediaURL = info["UIImagePickerControllerMediaURL"] as? URL {
+            print(mediaURL)
+            updateCell(mediaURL)
         }
         
         picker.dismiss(animated: true, completion: nil)

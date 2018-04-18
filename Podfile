@@ -7,6 +7,5 @@ target 'MediaCollection' do
     
     
     pod 'SwiftLint'
-    pod 'AppFolder'
 
 end

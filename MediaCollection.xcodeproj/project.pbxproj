@@ -20,6 +20,7 @@
 		5AEFD2AB208757CE0006617D /* MediaCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AEFD2A9208757CE0006617D /* MediaCollectionCell.xib */; };
 		5AEFD2AD208759E80006617D /* MediaDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2AC208759E80006617D /* MediaDataManager.swift */; };
 		5AEFD2AF20875C400006617D /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2AE20875C400006617D /* RandomGenerator.swift */; };
+		5AEFD2B120876F860006617D /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEFD2B020876F860006617D /* ResourceManager.swift */; };
 		6E49F43B3AD50EA81C01E5F9 /* Pods_MediaCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB90FFF375BFECD845677E3E /* Pods_MediaCollection.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		5AEFD2A9208757CE0006617D /* MediaCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaCollectionCell.xib; sourceTree = "<group>"; };
 		5AEFD2AC208759E80006617D /* MediaDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDataManager.swift; sourceTree = "<group>"; };
 		5AEFD2AE20875C400006617D /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
+		5AEFD2B020876F860006617D /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
 		6604728573145CBB10A51848 /* Pods-MediaCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaCollection.release.xcconfig"; path = "Pods/Target Support Files/Pods-MediaCollection/Pods-MediaCollection.release.xcconfig"; sourceTree = "<group>"; };
 		9505A21DED12B202B95DC398 /* Pods-MediaCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaCollection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MediaCollection/Pods-MediaCollection.debug.xcconfig"; sourceTree = "<group>"; };
 		DB90FFF375BFECD845677E3E /* Pods_MediaCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediaCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				5AEFD2A52087577B0006617D /* Media.swift */,
 				5AEFD2AC208759E80006617D /* MediaDataManager.swift */,
 				5AEFD2AE20875C400006617D /* RandomGenerator.swift */,
+				5AEFD2B020876F860006617D /* ResourceManager.swift */,
 			);
 			path = DataGroups;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				5AEFD27E20874D550006617D /* Frameworks */,
 				5AEFD27F20874D550006617D /* Resources */,
 				5AEFD29620874F430006617D /* Swift Lint Script */,
+				83AF495CD91B570BC64E53F6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,6 +274,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
+		83AF495CD91B570BC64E53F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MediaCollection/Pods-MediaCollection-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AppFolder/AppFolder.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppFolder.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MediaCollection/Pods-MediaCollection-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -286,6 +308,7 @@
 				5AEFD2A1208753A90006617D /* ReusableView.swift in Sources */,
 				5AEFD2AD208759E80006617D /* MediaDataManager.swift in Sources */,
 				5AEFD2A3208753CC0006617D /* UICollectionViewExtension.swift in Sources */,
+				5AEFD2B120876F860006617D /* ResourceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
